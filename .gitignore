@@ -11,3 +11,4 @@ attestation*png
 __pycache__/
 *.annot
 *.json
+*.token
