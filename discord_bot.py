@@ -184,10 +184,12 @@ from discord.ext import commands
 
 bot = commands.Bot(
     status = discord.Status.online,
-    activity = discord.Game(name="Type /help for help"),
-    command_prefix = "/",
+    activity = discord.Game(name="Type !help for help"),
+    command_prefix = "!",
     description = """
 This bot aims at automatically adding /spoiler to any code snippet pasted in a Discord text channel in your Discord server.
+When I see a message containing code between \`\`\`java...\`\`\`, I remove the formatting and show the code as spoiler ||spoiler||.
+
 Work in progress. See https://github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet.git
 """
 )
@@ -264,71 +266,104 @@ f""":ok_hand: J'ai lu ton pseudo, et j'ai pu détecter ton groupe {role}."""
 
 
 
-# brooklyn 99 quotes
-brooklyn_99_quotes = [
-    "I'm the human form of the 💯 emoji.",
-    "Bingpot!",
-    (
-        "Cool. Cool cool cool cool cool cool cool, "
-        "no doubt no doubt no doubt no doubt."
-    ),
-]
+# # basic command
+# @bot.command(name='hello', help="to check if the bot works, reply with 'Hello world!'")
+# async def hello(ctx):
+#     await ctx.send('Hello world!')
 
-@bot.event
+# @bot.command(name='bonjour', help="vérifie que le bot marche, réponds avec 'Bonjour, le monde !'")
+# async def bonjour(ctx):
+#     await ctx.send('Bonjour, le monde !')
+
+
+# # brooklyn 99 quotes
+# brooklyn_99_quotes = [
+#     "I'm the human form of the 💯 emoji.",
+#     "Bingpot!",
+#     (
+#         "Cool. Cool cool cool cool cool cool cool, "
+#         "no doubt no doubt no doubt no doubt."
+#     ),
+# ]
+# @bot.command(name='99', help="print a random quote from Brooklyn 99 (example)")
+# async def nine_nine(ctx):
+#     response = random.choice(brooklyn_99_quotes)
+#     await ctx.send(response)
+
+
+# # roi loth
+# roi_loth_quotes = [
+#     """> *Ave Cesar, rosae rosam, et spiritus rex !* Ah non, parce que là, j'en ai marre !
+#     > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
+
+#     """> *Tempora mori, tempora mundis recorda*. Voilà. Eh bien ça, par exemple, ça veut absolument rien dire, mais l'effet reste le même, et pourtant j'ai jamais foutu les pieds dans une salle de classe attention !
+#     > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
+
+#     """> *Victoriae mundis et mundis lacrima.* Bon, ça ne veut absolument rien dire, mais je trouve que c'est assez dans le ton.
+#     > -- François Rollin, Kaamelott, Livre IV, Le désordre et la nuit, écrit par Alexandre Astier.""",
+
+#     """> *Misa brevis et spiritus maxima*, ça veut rien dire, mais je suis très en colère contre moi-même.
+#     > -- François Rollin, Kaamelott, Livre V, Misère noire, écrit par Alexandre Astier.""",
+
+#     """> *Deus minimi placet* : seul les dieux décident.
+#     > -- François Rollin, Kaamelott, Livre VI, Arturus Rex, écrit par Alexandre Astier.""",
+
+#     """> *"Mundi placet et spiritus minima"*, ça n'a aucun sens mais on pourrait très bien imaginer une traduction du type : *"Le roseau plie, mais ne cède... qu'en cas de pépin"* ce qui ne veut rien dire non plus.
+#     > -- François Rollin, Kaamelott, Livre VI, Lacrimosa, écrit par Alexandre Astier.""",
+
+# ]
+
+# @bot.command(name='roiloth', help="prints a random fake quote from Roi Loth (Kaamelott) TODO")
+# async def roiloith(ctx):
+#     response = random.choice(roi_loth_quotes)
+#     await ctx.send(response)
+
+
+# # keep the Joke bot
+# @bot.command(name='joke', help="prints a random joke")
+# async def joke(ctx):
+#     # bot.trigger_typing()
+#     joke = get_joke()
+#     if joke == False:
+#         await ctx.send(f"Couldn't get joke from API ({URL}). Try again later.")
+#     else:
+#         await ctx.send(joke['setup'] + '\n' + joke['punchline'])
+
+# # add a quote bot
+# @bot.command(name='quote', help="prints a random quote")
+# async def quote(ctx):
+#     quote = get_random_quote()
+#     if quote:
+#         await ctx.send(quote)
+
+# # https://realpython.com/how-to-make-a-discord-bot-python/
+# @bot.command(name='roll_dice', help='Simulates rolling dice.')
+# async def roll(ctx, number_of_dice: int, number_of_sides: int):
+#     dice = [
+#         str(random.choice(range(1, number_of_sides + 1)))
+#         for _ in range(number_of_dice)
+#     ]
+#     await ctx.send(', '.join(dice))
+
+
+# @bot.event
+# async def on_command_error(ctx, error):
+#     if isinstance(error, commands.errors.CheckFailure):
+#         await ctx.send('You do not have the correct role for this command.')
+
+
+@bot.listen('on_message')
 async def on_message(message):
     # don't react to message posted by the post!
     if message.author == bot.user:
         return
-
-    # basic command
-    if message.content.startswith('/hello'):
-        await message.channel.send('Hello world!')
-    if message.content.startswith('/bonjour'):
-        await message.channel.send('Bonjour, le monde !')
-
-    # print help
-    if message.content.startswith('/help') or message.content.startswith('/aide'):
-        await message.author.create_dm()
-        await message.author.dm_channel.send(
-            """Help for the bot:
-
-- /hello: to check if the bot works, reply with 'Hello world!'
-- /help: displays this help.
-- happy birthday: reply with a happy birthday message.
-- /joke: prints a random joke in English (example)
-- /quote: prints a random joke in English (example)
-- 99!: print a random quote from Brooklyn 99 (example)
-- When I see a message containing code between \`\`\`java...\`\`\`, I remove the formatting and show the code as spoiler ||spoiler||.
-            """
-        )
+    print(message.content)
 
     # happy birthday feature
     if 'happy birthday' in message.content.lower():
         await message.channel.send(f"Happy Birthday @{message.author.display_name}! 🎈🎉")
     if 'joyeux anniversaire' in message.content.lower():
         await message.channel.send(f"Joyeux anniversaire @{message.author.display_name} ! 🎈🎉")
-
-    # brooklyn 99 quotes
-    if message.content == '99!':
-        response = random.choice(brooklyn_99_quotes)
-        await message.channel.send(response)
-
-    # keep the Joke bot
-    if message.content.startswith('/joke') or message.content.startswith('/blague'):
-        # bot.trigger_typing()
-        joke = get_joke()
-
-        if joke == False:
-            await message.channel.send("Couldn't get joke from API. Try again later.")
-        else:
-            await message.channel.send(joke['setup'] + '\n' + joke['punchline'])
-
-    # add a quote bot
-    if message.content.startswith('/quote') or message.content.startswith('/citation'):
-        # bot.trigger_typing()
-        quote = get_random_quote()
-        if quote:
-            await message.channel.send(quote)
 
     # now implement the anti spoiler bot
     if '```' in message.content:
@@ -338,26 +373,40 @@ async def on_message(message):
             print("Successfully deleting message.")
         except discord.errors.Forbidden:
             print("Failed to delete message.")
-        print("Reading a code snippet... I should /spoiler it!")
+
+        print("\nReading a new code snippet... I should ||anti spoiler|| it!")
         content = message.content
+        print(content)
         # DONE use a regexp to work for all languages
         used_language = start_codesnippet.search(content)[0]
         used_language = used_language.replace('```', '', 1).replace('\n', '', 1)
         if used_language:
             print(f"This code snippet is using '{used_language}' language")
 
-        content = content.replace('|', r'\|')
-        content = content.replace(f'```{used_language}\n', '\n||')
+        # TODO only do this for the part of the content which is between ```...```
+        content = content.replace(f'```{used_language}\n', f'```\n')
+        pieces = content.split('```')
+        new_pieces = []
+        for i, piece in enumerate(pieces):
+            new_piece = piece
+            if i % 2 == 1:
+                # protect special characters
+                new_piece = new_piece.replace('|', r'\|')
+                new_piece = new_piece.replace('`', r'\`')
+                new_piece = new_piece.replace('*', r'\*')
+                new_piece = new_piece.replace('_', r'\_')
+                new_piece = new_piece.replace('~', r'\~')
+                new_piece = new_piece.replace('>', r'\>')
+                new_piece = new_piece.replace(r'\`||', '`||')
+                new_piece = new_piece.replace(r'||\`', '||`')
+            new_pieces.append(new_piece)
+
+        content = '```'.join(new_pieces)
+        content = content.replace(f'```\n', '\n||')
         content = content.replace('\n```', '||')
-        content = content.replace('`', r'\`')
-        content = content.replace('*', r'\*')
-        content = content.replace('_', r'\_')
-        content = content.replace('~', r'\~')
-        content = content.replace('>', r'\>')
-        content = content.replace(r'\`||', '`||')
-        content = content.replace(r'||\`', '||`')
+
         if used_language:
-            await message.channel.send(f"Code ({used_language}), click to unspoil :\n{content}`")
+            await message.channel.send(f"Code (in {used_language}), click to unspoil :\n{content}")
         else:
             await message.channel.send(f"Code, click to unspoil :\n{content}")
 
