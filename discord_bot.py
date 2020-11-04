@@ -182,7 +182,8 @@ def tests(verbose=True):
 import discord
 
 client = discord.Client(
-    status = "Type /help for help"
+    status = discord.Status.online,
+    activity = discord.Game(name="Type /help for help"),
 )
 
 # Print info when connected
@@ -199,7 +200,7 @@ async def on_ready():
         )
         print(f"Guild Members:")
         for member in guild.members:
-            print(f"- {member.display_name}")
+            print(f"- '{member.display_name}' (id: '{member.id}')")
 
 
 # Welcome a new member
@@ -325,18 +326,32 @@ async def on_message(message):
 
     # now implement the anti spoiler bot
     if '```' in message.content:
-        await message.channel.send("Reading a code snippet... I should /spoiler it!")
+        # TODO delete the message!
+        try:
+            await message.delete()
+            print("Successfully deleting message.")
+        except discord.errors.Forbidden:
+            print("Failed to delete message.")
+        print("Reading a code snippet... I should /spoiler it!")
         content = message.content
         # DONE use a regexp to work for all languages
         used_language = start_codesnippet.search(content)[0]
         used_language = used_language.replace('```', '', 1).replace('\n', '', 1)
         if used_language:
-            await message.channel.send(f"This code snippet is using '{used_language}' language")
+            print(f"This code snippet is using '{used_language}' language")
 
-        content = content.replace(f'```{used_language}\n', '||', 1)
+        content = content.replace('|', r'\|')
+        content = content.replace(f'```{used_language}\n', '\n||')
         content = content.replace('\n```', '||')
+        content = content.replace('`', r'\`')
+        content = content.replace('*', r'\*')
+        content = content.replace('_', r'\_')
+        content = content.replace('~', r'\~')
+        content = content.replace('>', r'\>')
+        content = content.replace(r'\`||', '`||')
+        content = content.replace(r'||\`', '||`')
         if used_language:
-            await message.channel.send(f"Code ({used_language}), click to unspoil :\n{content}")
+            await message.channel.send(f"Code ({used_language}), click to unspoil :\n{content}`")
         else:
             await message.channel.send(f"Code, click to unspoil :\n{content}")
 
