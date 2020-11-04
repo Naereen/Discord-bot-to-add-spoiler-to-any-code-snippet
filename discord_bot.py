@@ -188,7 +188,7 @@ bot = commands.Bot(
     command_prefix = "!",
     description = """
 This bot aims at automatically adding /spoiler to any code snippet pasted in a Discord text channel in your Discord server.
-When I see a message containing code between \`\`\`java...\`\`\`, I remove the formatting and show the code as spoiler ||spoiler||.
+When I see a message containing code between \`\`\`...\`\`\`, I remove the formatting and show the code as spoiler ||spoiler||.
 
 Work in progress. See https://github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet.git
 """
@@ -266,93 +266,94 @@ f""":ok_hand: J'ai lu ton pseudo, et j'ai pu détecter ton groupe {role}."""
 
 
 
-# # basic command
-# @bot.command(name='hello', help="to check if the bot works, reply with 'Hello world!'")
-# async def hello(ctx):
-#     await ctx.send('Hello world!')
+# basic command
+@bot.command(name='hello', help="to check if the bot works, reply with 'Hello world!'")
+async def hello(ctx):
+    await ctx.send('Hello world!')
 
-# @bot.command(name='bonjour', help="vérifie que le bot marche, réponds avec 'Bonjour, le monde !'")
-# async def bonjour(ctx):
-#     await ctx.send('Bonjour, le monde !')
-
-
-# # brooklyn 99 quotes
-# brooklyn_99_quotes = [
-#     "I'm the human form of the 💯 emoji.",
-#     "Bingpot!",
-#     (
-#         "Cool. Cool cool cool cool cool cool cool, "
-#         "no doubt no doubt no doubt no doubt."
-#     ),
-# ]
-# @bot.command(name='99', help="print a random quote from Brooklyn 99 (example)")
-# async def nine_nine(ctx):
-#     response = random.choice(brooklyn_99_quotes)
-#     await ctx.send(response)
+@bot.command(name='bonjour', help="vérifie que le bot marche, réponds avec 'Bonjour, le monde !'")
+async def bonjour(ctx):
+    await ctx.send('Bonjour, le monde !')
 
 
-# # roi loth
-# roi_loth_quotes = [
-#     """> *Ave Cesar, rosae rosam, et spiritus rex !* Ah non, parce que là, j'en ai marre !
-#     > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
-
-#     """> *Tempora mori, tempora mundis recorda*. Voilà. Eh bien ça, par exemple, ça veut absolument rien dire, mais l'effet reste le même, et pourtant j'ai jamais foutu les pieds dans une salle de classe attention !
-#     > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
-
-#     """> *Victoriae mundis et mundis lacrima.* Bon, ça ne veut absolument rien dire, mais je trouve que c'est assez dans le ton.
-#     > -- François Rollin, Kaamelott, Livre IV, Le désordre et la nuit, écrit par Alexandre Astier.""",
-
-#     """> *Misa brevis et spiritus maxima*, ça veut rien dire, mais je suis très en colère contre moi-même.
-#     > -- François Rollin, Kaamelott, Livre V, Misère noire, écrit par Alexandre Astier.""",
-
-#     """> *Deus minimi placet* : seul les dieux décident.
-#     > -- François Rollin, Kaamelott, Livre VI, Arturus Rex, écrit par Alexandre Astier.""",
-
-#     """> *"Mundi placet et spiritus minima"*, ça n'a aucun sens mais on pourrait très bien imaginer une traduction du type : *"Le roseau plie, mais ne cède... qu'en cas de pépin"* ce qui ne veut rien dire non plus.
-#     > -- François Rollin, Kaamelott, Livre VI, Lacrimosa, écrit par Alexandre Astier.""",
-
-# ]
-
-# @bot.command(name='roiloth', help="prints a random fake quote from Roi Loth (Kaamelott) TODO")
-# async def roiloith(ctx):
-#     response = random.choice(roi_loth_quotes)
-#     await ctx.send(response)
+# brooklyn 99 quotes
+brooklyn_99_quotes = [
+    "I'm the human form of the 💯 emoji.",
+    "Bingpot!",
+    (
+        "Cool. Cool cool cool cool cool cool cool, "
+        "no doubt no doubt no doubt no doubt."
+    ),
+]
+@bot.command(name='99', help="print a random quote from Brooklyn 99 (example)")
+async def nine_nine(ctx):
+    response = random.choice(brooklyn_99_quotes)
+    await ctx.send(response)
 
 
-# # keep the Joke bot
-# @bot.command(name='joke', help="prints a random joke")
-# async def joke(ctx):
-#     # bot.trigger_typing()
-#     joke = get_joke()
-#     if joke == False:
-#         await ctx.send(f"Couldn't get joke from API ({URL}). Try again later.")
-#     else:
-#         await ctx.send(joke['setup'] + '\n' + joke['punchline'])
+# roi loth
+roi_loth_quotes = [
+    """> *Ave Cesar, rosae rosam, et spiritus rex !* Ah non, parce que là, j'en ai marre !
+    > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
 
-# # add a quote bot
-# @bot.command(name='quote', help="prints a random quote")
-# async def quote(ctx):
-#     quote = get_random_quote()
-#     if quote:
-#         await ctx.send(quote)
+    """> *Tempora mori, tempora mundis recorda*. Voilà. Eh bien ça, par exemple, ça veut absolument rien dire, mais l'effet reste le même, et pourtant j'ai jamais foutu les pieds dans une salle de classe attention !
+    > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
 
-# # https://realpython.com/how-to-make-a-discord-bot-python/
-# @bot.command(name='roll_dice', help='Simulates rolling dice.')
-# async def roll(ctx, number_of_dice: int, number_of_sides: int):
-#     dice = [
-#         str(random.choice(range(1, number_of_sides + 1)))
-#         for _ in range(number_of_dice)
-#     ]
-#     await ctx.send(', '.join(dice))
+    """> *Victoriae mundis et mundis lacrima.* Bon, ça ne veut absolument rien dire, mais je trouve que c'est assez dans le ton.
+    > -- François Rollin, Kaamelott, Livre IV, Le désordre et la nuit, écrit par Alexandre Astier.""",
 
+    """> *Misa brevis et spiritus maxima*, ça veut rien dire, mais je suis très en colère contre moi-même.
+    > -- François Rollin, Kaamelott, Livre V, Misère noire, écrit par Alexandre Astier.""",
 
-# @bot.event
-# async def on_command_error(ctx, error):
-#     if isinstance(error, commands.errors.CheckFailure):
-#         await ctx.send('You do not have the correct role for this command.')
+    """> *Deus minimi placet* : seul les dieux décident.
+    > -- François Rollin, Kaamelott, Livre VI, Arturus Rex, écrit par Alexandre Astier.""",
+
+    """> *"Mundi placet et spiritus minima"*, ça n'a aucun sens mais on pourrait très bien imaginer une traduction du type : *"Le roseau plie, mais ne cède... qu'en cas de pépin"* ce qui ne veut rien dire non plus.
+    > -- François Rollin, Kaamelott, Livre VI, Lacrimosa, écrit par Alexandre Astier.""",
+
+]
+
+@bot.command(name='roiloth', help="prints a random fake quote from Roi Loth (Kaamelott) TODO")
+async def roiloith(ctx):
+    response = random.choice(roi_loth_quotes)
+    await ctx.send(response)
 
 
-@bot.listen('on_message')
+# keep the Joke bot
+@bot.command(name='joke', help="prints a random joke")
+async def joke(ctx):
+    # bot.trigger_typing()
+    joke = get_joke()
+    if joke == False:
+        await ctx.send(f"Couldn't get joke from API ({URL}). Try again later.")
+    else:
+        await ctx.send(joke['setup'] + '\n' + joke['punchline'])
+
+# add a quote bot
+@bot.command(name='quote', help="prints a random quote")
+async def quote(ctx):
+    await ctx.message.delete(delay=1)
+    quote = get_random_quote()
+    if quote:
+        await ctx.send(quote)
+
+# https://realpython.com/how-to-make-a-discord-bot-python/
+@bot.command(name='roll_dice', help='Simulates rolling dice.')
+async def roll(ctx, number_of_dice: int, number_of_sides: int):
+    dice = [
+        str(random.choice(range(1, number_of_sides + 1)))
+        for _ in range(number_of_dice)
+    ]
+    await ctx.send(', '.join(dice))
+
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CheckFailure):
+        await ctx.send('You do not have the correct role for this command.')
+
+
+@bot.event
 async def on_message(message):
     # don't react to message posted by the post!
     if message.author == bot.user:
@@ -369,6 +370,7 @@ async def on_message(message):
     if '```' in message.content:
         # TODO delete the message!
         try:
+            print("Trying to deleting message...")
             await message.delete()
             print("Successfully deleting message.")
         except discord.errors.Forbidden:
@@ -413,6 +415,8 @@ async def on_message(message):
         # # now run the code TODO
         # await message.channel.send("Also running the code snippet using @RTFM bot...")
         # await message.channel.send(f"do run {used_language} {content}")
+    else:
+        await bot.process_commands(message) # allows decorated commands to work
 
 
 if __name__ == '__main__':
