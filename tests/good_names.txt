@@ -1,0 +1,176 @@
+List OFNAME TO TEST - prof
+
+Good NAMES - prof
+Lilian BESSON - prof
+Lilian Besson - prof
+LILIAN Besson - prof
+LILIAN BESSON - prof
+
+# group IE-1
+Jean De La Roche - IE1-A
+Jean De La Roche - IE-1A
+Jean De La Roche - IE1-A
+Jean De La Roche - IE1A
+Jean De La Roche - IE1-B
+Jean De La Roche - IE-1B
+Jean De La Roche - IE1-B
+Jean De La Roche - IE1B
+
+# group IE-1
+Jean De La Roche - IE1-A    
+Jean De La Roche - IE-1A    
+Jean De La Roche - IE1-A    
+Jean De La Roche - IE1A    
+Jean De La Roche - IE1-B    
+Jean De La Roche - IE-1B    
+Jean De La Roche - IE1-B    
+Jean De La Roche - IE1B    
+
+# group IE-1
+  Jean De La Roche - IE1-A    
+    Jean De La Roche - IE-1A  
+ Jean De La Roche - IE1-A    
+    Jean De La Roche - IE1A 
+    Jean De La Roche - IE1-B   
+        Jean De La Roche - IE-1B    
+    Jean De La Roche - IE1-B     
+                Jean De La Roche - IE1B      
+
+# group IE-1
+    Jean De La Roche - IE1-A
+    Jean De La Roche - IE-1A
+    Jean De La Roche - IE1-A
+    Jean De La Roche - IE1A
+    Jean De La Roche - IE1-B
+    Jean De La Roche - IE-1B
+    Jean De La Roche - IE1-B
+    Jean De La Roche - IE1B
+
+# group IE-2
+Jean DE LA ROCHE - IE2-A
+Jeân DE LA ROCHE - IE-2A
+Jéan DE LA ROCHE - IE2-A
+Jèan DE LA ROCHE - IE2A
+Jêan DE LA ROCHE - IE2-B
+Jëan DE LA ROCHE - IE-2B
+Jeàn DE LA ROCHE - IE2-B
+Jeän DE LA ROCHE - IE2B
+
+# group IE-3
+Jeanne B OK - IE3-A
+Jeanne B OK - IE-3A
+Jeanne B OK - IE3-A
+Jeanne B OK - IE3A
+Jeanne B OK - IE3-B
+Jeanne B OK - IE-3B
+Jeanne B OK - IE3-B
+Jeanne B OK - IE3B
+
+# group IE-4
+L BOK - IE4-A
+L BOK - IE-4A
+L BOK - IE4-A
+L BOK - IE4A
+L BOK - IE4-B
+L BOK - IE-4B
+L BOK - IE4-B
+L BOK - IE4B
+
+# group IE-5
+LUCIE Bok - IE5-A
+LUCIE Bok - IE-5A
+LUCIE Bok - IE5-A
+LUCIE Bok - IE5A
+LUCIE Bok - IE5-B
+LUCIE Bok - IE-5B
+LUCIE Bok - IE5-B
+LUCIE Bok - IE5B
+
+# group IE-6
+LUCIE BOK - IE6-A
+LUCIE BOK - IE-6A
+LUCIE BOK - IE6-A
+LUCIE BOK - IE6A
+LUCIE BOK - IE6-B
+LUCIE BOK - IE-6B
+LUCIE BOK - IE6-B
+LUCIE BOK - IE6B
+
+# group IE-7
+Lucie BOK - IE7-A
+Lucie BOK - IE-7A
+Lucie BOK - IE7-A
+Lucie BOK - IE7A
+Lucie BOK - IE7-B
+Lucie BOK - IE-7B
+Lucie BOK - IE7-B
+Lucie BOK - IE7B
+
+# group IE-8
+Luçie Bok - IE8-A
+Lucie Bok - IE-8A
+Lucie Bok - IE8-A
+Lucie Bok - IE8A
+Lucie Bok - IE8-B
+Lucie Bok - IE-8B
+Lucie Bok - IE8-B
+Lucie Bok - IE8B
+
+# group IE-9
+LUCIE Bok - IE9-A
+LUCIE Bok - IE-9A
+LUCIE Bok - IE9-A
+LUCIE Bok - IE9A
+LUCIE Bok - IE9-B
+LUCIE Bok - IE-9B
+LUCIE Bok - IE9-B
+LUCIE Bok - IE9B
+
+
+# group MA1
+Mary-Lou DUPONT - MA1-1
+Marŷ-Lou DUPONT - MA-11
+Marÿ-Lou DUPONT - MA1-1
+Mary-Lôu DUPONT - MA11
+Mary-Loù DUPONT - MA1-2
+Mary-Loû DUPONT - MA-12
+Mary-Löu DUPONT - MA1-2
+Mary-Loü DUPONT - MA12
+
+# group MA2
+Mikë DUPONT - MA2-3
+Mïke DUPONT - MA-23
+Mîke DUPONT - MA2-3
+MIKË DUPONT - MA2-3
+MÏKE DUPONT - MA-23
+MÎKE DUPONT - MA2-3
+Mike DUPONT - MA23
+Mike DUPONT - MA2-4
+Mike DUPONT - MA-24
+Mike DUPONT - MA2-4
+Mike DUPONT - MA24
+
+# group MA3
+Marie XORG - MA3-5
+Marié XORG - MA-35
+Mariè XORG - MA3-5
+Mariê XORG - MA35
+Marîe XORG - MA3-6
+Mârie XORG - MA-36
+MARIÉ XORG - MA-35
+MARIÈ XORG - MA3-5
+MARIÊ XORG - MA35
+MARÎE XORG - MA3-6
+MÂRIE XORG - MA-36
+MARIE XORG - MA3-6
+Marie XORG - MA36
+
+# group MA4
+Y Z - MA4-7
+Y Z - MA-47
+Y Z - MA4-7
+Y Z - MA47
+Y Z - MA4-8
+Y Z - MA-48
+Y Z - MA4-8
+Y Z - MA48

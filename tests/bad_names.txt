@@ -1,0 +1,111 @@
+# no group
+Bad NAMES
+Bad NAMES -
+Bad NAMES - 
+ Bad NAMES - 
+
+# group and bad names
+Bad - IE-1A
+BAD - IE-1A
+Bad - IE-1A  
+BAD - IE-1A  
+   Bad - IE-1A
+     BAD - IE-1A
+      Bad - IE-1A  
+   BAD - IE-1A  
+
+# group and bad names
+1Bad - IE-1A
+1BAD - IE-1A
+Bad1 - IE-1A
+BAD1 - IE-1A
+B1ad - IE-1A
+B1AD - IE-1A
+
+# group and bad names
+"Bad - IE-5A
+"BAD - IE-5A
+Bad" - IE-5A
+BAD" - IE-5A
+B"ad - IE-5A
+B"AD - IE-5A
+
+# group and bad names
+&Bad - IE-5A
+&BAD - IE-5A
+Bad& - IE-5A
+BAD& - IE-5A
+B&ad - IE-5A
+B&AD - IE-5A
+
+# group and bad names
++Bad - IE-5A
++BAD - IE-5A
+Bad+ - IE-5A
+BAD+ - IE-5A
+B+ad - IE-5A
+B+AD - IE-5A
+
+# group but not a good one
+Marie DUPONT - MA1-0
+Marie DUPONT - MA1-3
+Marie DUPONT - MA1-4
+Marie DUPONT - MA1-5
+Marie DUPONT - MA1-6
+Marie DUPONT - MA1-7
+Marie DUPONT - MA1-8
+Marie DUPONT - MA1-9
+Marie DUPONT - MA1-10
+Marie DUPONT - MA-90
+Marie DUPONT - MA-91
+Marie DUPONT - MA-92
+Marie DUPONT - MA1-6
+Marie DUPONT - MA-16
+
+# group but not a good one
+Marie DUPONT - MA1-0   
+Marie DUPONT - MA1-3   
+Marie DUPONT - MA1-4   
+Marie DUPONT - MA1-5   
+Marie DUPONT - MA1-6   
+Marie DUPONT - MA1-7   
+Marie DUPONT - MA1-8   
+Marie DUPONT - MA1-9   
+Marie DUPONT - MA1-10   
+Marie DUPONT - MA-90   
+Marie DUPONT - MA-91   
+Marie DUPONT - MA-92   
+Marie DUPONT - MA1-6   
+Marie DUPONT - MA-16   
+
+# group but not a good one
+    Marie DUPONT - MA1-0
+    Marie DUPONT - MA1-3
+    Marie DUPONT - MA1-4
+    Marie DUPONT - MA1-5
+    Marie DUPONT - MA1-6
+    Marie DUPONT - MA1-7
+    Marie DUPONT - MA1-8
+    Marie DUPONT - MA1-9
+    Marie DUPONT - MA1-10
+    Marie DUPONT - MA-90
+    Marie DUPONT - MA-91
+    Marie DUPONT - MA-92
+    Marie DUPONT - MA1-6
+    Marie DUPONT - MA-16
+
+# group but not a good one
+    Marie DUPONT - MA1-0   
+    Marie DUPONT - MA1-3   
+    Marie DUPONT - MA1-4   
+    Marie DUPONT - MA1-5   
+    Marie DUPONT - MA1-6   
+    Marie DUPONT - MA1-7   
+    Marie DUPONT - MA1-8   
+    Marie DUPONT - MA1-9   
+    Marie DUPONT - MA1-10   
+    Marie DUPONT - MA-90   
+    Marie DUPONT - MA-91   
+    Marie DUPONT - MA-92   
+    Marie DUPONT - MA1-6   
+    Marie DUPONT - MA-16   
