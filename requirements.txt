@@ -1,2 +1,4 @@
+ipython
+lea
 requests
 discord.py

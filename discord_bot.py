@@ -180,22 +180,28 @@ def tests(verbose=True):
 # See https://blog.alanconstantino.com/articles/creating-a-discord-bot-with-python.html
 # https://discordpy.readthedocs.io/en/latest/api.html#discord-models
 import discord
+from discord.ext import commands
 
-client = discord.Client(
+bot = commands.Bot(
     status = discord.Status.online,
     activity = discord.Game(name="Type /help for help"),
+    command_prefix = "/",
+    description = """
+This bot aims at automatically adding /spoiler to any code snippet pasted in a Discord text channel in your Discord server.
+Work in progress. See https://github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet.git
+"""
 )
 
 # Print info when connected
-@client.event
+@bot.event
 async def on_ready():
     """ Function called when bot is ready (has logged in)."""
-    print(f"This bot has logged in as '{client.user}'")
+    print(f"This bot has logged in as '{bot.user}'")
 
     # See https://realpython.com/how-to-make-a-discord-bot-python/
-    for guild in client.guilds:
+    for guild in bot.guilds:
         print(
-            f"\n\n'{client.user}' is connected to the following guild:\n"
+            f"\n\n'{bot.user}' is connected to the following guild:\n"
             f"'{guild.name}' (id: '{guild.id}')\n"
         )
         print(f"Guild Members:")
@@ -204,7 +210,7 @@ async def on_ready():
 
 
 # Welcome a new member
-@client.event
+@bot.event
 async def on_member_join(member):
     """ Function called when bot sees a new member."""
     await member.create_dm()
@@ -236,7 +242,7 @@ Bon courage pour ce confinement."""
         )
 
 # Check if the new pseudo of a user is now in a good form, and add him/her to the good group
-@client.event
+@bot.event
 async def on_member_update(before, after):
     print(f"{before.display_name} ({before.id}) changed his/her name to {after.display_name}")
     before_role = extract_role(before.display_name)
@@ -268,10 +274,10 @@ brooklyn_99_quotes = [
     ),
 ]
 
-@client.event
+@bot.event
 async def on_message(message):
     # don't react to message posted by the post!
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     # basic command
@@ -309,7 +315,7 @@ async def on_message(message):
 
     # keep the Joke bot
     if message.content.startswith('/joke') or message.content.startswith('/blague'):
-        # client.trigger_typing()
+        # bot.trigger_typing()
         joke = get_joke()
 
         if joke == False:
@@ -319,7 +325,7 @@ async def on_message(message):
 
     # add a quote bot
     if message.content.startswith('/quote') or message.content.startswith('/citation'):
-        # client.trigger_typing()
+        # bot.trigger_typing()
         quote = get_random_quote()
         if quote:
             await message.channel.send(quote)
@@ -365,4 +371,4 @@ if __name__ == '__main__':
 
     with open("bot.token", 'r') as f:
         TOKEN = f.readline()
-    client.run(TOKEN)
+    bot.run(TOKEN)
