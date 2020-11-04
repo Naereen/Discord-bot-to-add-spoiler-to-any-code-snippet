@@ -1,0 +1,47 @@
+Voici ma réponse
+```java
+// Hidden from here
+public static class Main {
+  public static void main(String[] args) {
+    System.out.println("Test of 1*2*3*4");
+    // **not bold**?
+    // *not italic*?
+    // _not italic_?
+    // __not underline__?
+    // __**not bold underline**__?
+    // __*not italic underline*__?
+    // ~~not strikethrough~~?
+  }
+}
+// until here
+```
+Tu es content ? **bold**? *italic*? _italic_? __underline__? __**bold underline**__? __*italic underline*__? ~~strikethrough~~?
+Voici ma réponse
+```ocaml
+let _ = print_endline "Hello world!";;
+/* **not bold**? */
+/* *not italic*? */
+/* _not italic_? */
+/* __not underline__? */
+/* __**not bold underline**__? */
+/* __*not italic underline*__? */
+/* ~~not strikethrough~~? */
+```
+Tu es content ? **bold**? *italic*? _italic_? __underline__? __**bold underline**__? __*italic underline*__? ~~strikethrough~~?
+Voici ma réponse
+```python
+def main(*args):
+    print("Hello world!")
+
+# **not bold**?
+# *not italic*?
+# _not italic_?
+# __not underline__?
+# __**not bold underline**__?
+# __*not italic underline*__?
+# ~~not strikethrough~~?
+
+if __name__ == '__main__':
+    main()
+```
+Tu es content ? **bold**? *italic*? _italic_? __underline__? __**bold underline**__? __*italic underline*__? ~~strikethrough~~?
