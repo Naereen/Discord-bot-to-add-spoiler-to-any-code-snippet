@@ -1,0 +1,13 @@
+*~
+*.pyc
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+*.log
+*.html
+*.pdf
+attestation*png
+*.so
+\#*\#
+__pycache__/
+*.annot
+*.json
