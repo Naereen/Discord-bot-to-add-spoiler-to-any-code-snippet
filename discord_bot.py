@@ -313,10 +313,19 @@ roi_loth_quotes = [
 
 ]
 
+try:
+    from Generer_des_fausses_citations_latines_du_Roi_Loth import citation_aleatoire
+except ImportError:
+    def citation_aleatoire():
+        return random.choice(roi_loth_quotes)
+
 @bot.command(name='roiloth', help="prints a random fake quote from Roi Loth (Kaamelott) TODO")
-async def roiloith(ctx):
-    response = random.choice(roi_loth_quotes)
-    await ctx.send(response)
+async def roiloith(ctx, number_of_citations: int):
+    if number_of_citations <= 0:
+        number_of_citations = 1
+    for _ in range(number_of_citations):
+        response = citation_aleatoire()
+        await ctx.send(response)
 
 
 # keep the Joke bot

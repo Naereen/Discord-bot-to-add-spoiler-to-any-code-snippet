@@ -3,15 +3,20 @@ import random
 
 from string import ascii_lowercase
 from collections import Counter, defaultdict
+from functools import lru_cache
 
 
 # Le module [lea](https://bitbucket.org/piedenis/lea) sera très pratique pour manipuler les probabilités pour les chaînes de Markov.
 
 from lea import Lea
 
+# https://bitbucket.org/piedenis/lea/wiki/Lea3_Tutorial_2#markdown-header-markov-chains
+from lea import markov
 
 
-def markov(corpus, start, length):
+# don't recompute twice this, it takes some time!
+@lru_cache(maxsize=None)
+def old_markov(corpus, start, length):
     # Counting occurrences
     next_one = defaultdict(Counter)
     for sentence in corpus:
@@ -34,6 +39,32 @@ def markov(corpus, start, length):
     return(words)
 
 
+# don't recompute twice this, it takes some time!
+# @lru_cache(maxsize=None)
+def make_markov(start, length, corpus=None, predefined_markov_chain=None):
+    if predefined_markov_chain is None:
+        # creating long sequences of observed states
+        observed_states = []
+
+        # Counting occurrences
+        for sentence in corpus:
+            words = sentence.split()
+            observed_states += words
+
+        # Initializing states
+        markov_chain = markov.chain_from_seq(observed_states)
+    else:
+        markov_chain = predefined_markov_chain
+
+    states = markov_chain.get_states()
+    possible_starting_states = [ s for s in states if str(s).split(' : ')[0] == start ]
+    if not possible_starting_states:
+        starting_state = random.choice(states)
+    else:
+        starting_state = possible_starting_states[0]
+    return starting_state.random_seq(length)
+
+
 # ## Fausses locutions latines
 #
 # On va extraire le corpus, la liste des premiers mots, et la probabilité qu'un mot en début de citation commence par une majuscule.
@@ -43,18 +74,22 @@ WORD_LIST = "tests/latin.txt"
 corpus = open(WORD_LIST).readlines()
 
 
-print("Exemple d'une citation :", corpus[0])
-print("Il y a", len(corpus), "citations.")
+if __name__ == "__main__":
+    print("Exemple d'une citation :", corpus[0])
+    print("Il y a", len(corpus), "citations.")
 
 
 starts = [c.split()[0] for c in corpus]
-start = random.choice(starts)
-print("Exemple d'un mot de début de citation :", start)
-print("Il y a", len(starts), "mots de débuts de citations.")
 
 
-proba_title = len([1 for s in starts if s.istitle()]) / len(starts)
-print("Il y a {:.3%} chance de commencer une citation par une majuscule.".format(proba_title))
+if __name__ == "__main__":
+    start = random.choice(starts)
+    print("Exemple d'un mot de début de citation :", start)
+    print("Il y a", len(starts), "mots de débuts de citations.")
+
+
+    proba_title = len([1 for s in starts if s.istitle()]) / len(starts)
+    print("Il y a {:.3%} chance de commencer une citation par une majuscule.".format(proba_title))
 
 
 # Mais en fait, le Roi Loth commence toujours ses citations latines par une majuscule :
@@ -68,16 +103,28 @@ length_min = 3
 length_max = 6
 
 
+# creating long sequences of observed states
+observed_states = []
+
+# Counting occurrences
+for sentence in corpus:
+    words = sentence.split()
+    observed_states += words
+
+# Initializing states
+markov_chain = markov.chain_from_seq(observed_states)
+
+
 # On a bientôt ce qu'il faut pour générer une locution latine aléatoire.
 # Il arrive que la chaîne de Markov se bloque, donc on va juste essayer plusieurs fois avec des débuts différents.
 
-def markov_try_while_failing(corpus, starts, length_min, length_max, proba_title, nb_max_trial=100):
+def markov_try_while_failing(corpus, starts, length_min, length_max, proba_title, nb_max_trial=100, predefined_markov_chain=markov_chain):
     # Try 100 times to generate a sentence
     start = random.choice(starts)
     length = random.randint(length_min, length_max)
     for trial in range(nb_max_trial):
         try:
-            words = markov(corpus, start, length)
+            words = list(make_markov(start, length, corpus=tuple(corpus), predefined_markov_chain=predefined_markov_chain))
             if random.random() <= proba_title:
                 words[0] = words[0].title()
             return words  # comment to debug
@@ -92,9 +139,10 @@ def markov_try_while_failing(corpus, starts, length_min, length_max, proba_title
 
 # On peut essayer :
 
-for _ in range(10):
-    words = markov_try_while_failing(corpus, starts, length_min, length_max, proba_title)
-    print(' '.join(words))
+if __name__ == "__main__":
+    for _ in range(10):
+        words = markov_try_while_failing(corpus, starts, length_min, length_max, proba_title)
+        print(' '.join(words))
 
 
 # Ça a déjà l'air pas mal latin !
@@ -186,20 +234,18 @@ def explication_aleatoire():
 # ### Combiner le tout !
 # C'est très facile :
 
-def citation_aleatoire(italic=False):
+def citation_aleatoire(italic=False, quote=False):
     metadonnee = metadonnee_aleatoire()
     explication = explication_aleatoire()
     words = markov_try_while_failing(corpus, starts, length_min, length_max, proba_title)
     locution = ' '.join(words)
-    if italic:
-        citation = '"*{}*"{} -- {}'.format(locution, explication, metadonnee)
-    else:
-        citation = '"{}"{} -- {}'.format(locution, explication, metadonnee)
+    citation = f"{'> ' if quote else ''}\"{'*' if italic else ''}{locution}{'*' if italic else ''}\"{explication} -- {metadonnee}"
     return citation
 
 
 # ### Exemples
 
-for _ in range(10):
-    print(">", citation_aleatoire(italic=True))
+if __name__ == "__main__":
+    for _ in range(10):
+        print(">", citation_aleatoire(italic=True))
 
