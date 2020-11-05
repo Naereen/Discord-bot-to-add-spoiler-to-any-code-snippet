@@ -120,6 +120,7 @@ N'hésite pas à explorer l'organisation du serveur, à poser des questions dans
 Bon courage pour ce confinement."""
         )
 
+# TODO this does not work (yet)
 # Check if the new pseudo of a user is now in a good form, and add him/her to the good group
 @bot.event
 async def on_member_update(before, after):
@@ -169,30 +170,30 @@ async def nine_nine(ctx):
 
 
 # roi loth
-roi_loth_quotes = [
-    """> *Ave Cesar, rosae rosam, et spiritus rex !* Ah non, parce que là, j'en ai marre !
-    > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
-
-    """> *Tempora mori, tempora mundis recorda*. Voilà. Eh bien ça, par exemple, ça veut absolument rien dire, mais l'effet reste le même, et pourtant j'ai jamais foutu les pieds dans une salle de classe attention !
-    > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
-
-    """> *Victoriae mundis et mundis lacrima.* Bon, ça ne veut absolument rien dire, mais je trouve que c'est assez dans le ton.
-    > -- François Rollin, Kaamelott, Livre IV, Le désordre et la nuit, écrit par Alexandre Astier.""",
-
-    """> *Misa brevis et spiritus maxima*, ça veut rien dire, mais je suis très en colère contre moi-même.
-    > -- François Rollin, Kaamelott, Livre V, Misère noire, écrit par Alexandre Astier.""",
-
-    """> *Deus minimi placet* : seul les dieux décident.
-    > -- François Rollin, Kaamelott, Livre VI, Arturus Rex, écrit par Alexandre Astier.""",
-
-    """> *"Mundi placet et spiritus minima"*, ça n'a aucun sens mais on pourrait très bien imaginer une traduction du type : *"Le roseau plie, mais ne cède... qu'en cas de pépin"* ce qui ne veut rien dire non plus.
-    > -- François Rollin, Kaamelott, Livre VI, Lacrimosa, écrit par Alexandre Astier.""",
-
-]
 
 try:
     from Generer_des_fausses_citations_latines_du_Roi_Loth import citation_aleatoire
 except ImportError:
+    roi_loth_quotes = [
+        """> *Ave Cesar, rosae rosam, et spiritus rex !* Ah non, parce que là, j'en ai marre !
+        > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
+
+        """> *Tempora mori, tempora mundis recorda*. Voilà. Eh bien ça, par exemple, ça veut absolument rien dire, mais l'effet reste le même, et pourtant j'ai jamais foutu les pieds dans une salle de classe attention !
+        > -- François Rollin, Kaamelott, Livre III, L'Assemblée des rois 2e partie, écrit par Alexandre Astier.""",
+
+        """> *Victoriae mundis et mundis lacrima.* Bon, ça ne veut absolument rien dire, mais je trouve que c'est assez dans le ton.
+        > -- François Rollin, Kaamelott, Livre IV, Le désordre et la nuit, écrit par Alexandre Astier.""",
+
+        """> *Misa brevis et spiritus maxima*, ça veut rien dire, mais je suis très en colère contre moi-même.
+        > -- François Rollin, Kaamelott, Livre V, Misère noire, écrit par Alexandre Astier.""",
+
+        """> *Deus minimi placet* : seul les dieux décident.
+        > -- François Rollin, Kaamelott, Livre VI, Arturus Rex, écrit par Alexandre Astier.""",
+
+        """> *"Mundi placet et spiritus minima"*, ça n'a aucun sens mais on pourrait très bien imaginer une traduction du type : *"Le roseau plie, mais ne cède... qu'en cas de pépin"* ce qui ne veut rien dire non plus.
+        > -- François Rollin, Kaamelott, Livre VI, Lacrimosa, écrit par Alexandre Astier.""",
+
+    ]
     def citation_aleatoire():
         return random.choice(roi_loth_quotes)
 
@@ -265,6 +266,10 @@ async def on_message(message):
         print("\nReading a new code snippet... I should ||anti spoiler|| it!")
         await message.channel.send(spoiler_code_snippet(message.content))
 
+        # Another idea: delete the initial message, and post its content as a file, with spoiler enabled
+        # spoiler = await file.to_file(spoiler=True)
+        # await ctx.send(file=spoiler)
+
         # # now run the code TODO
         # await message.channel.send("Also running the code snippet using @RTFM bot...")
         # await message.channel.send(f"do run {used_language} {content}")
@@ -273,8 +278,9 @@ async def on_message(message):
 
 
 def spoiler_code_snippet(content):
-        print(content)
+        print(f"Calling spoiler_code_snippet() on:\n{content}")
         # DONE use a regexp to work for all languages
+        # TODO handle correctly code in different languages
         used_language = start_codesnippet.search(content)[0]
         used_language = used_language.replace('```', '', 1).replace('\n', '', 1)
         if used_language:
@@ -287,7 +293,8 @@ def spoiler_code_snippet(content):
         for i, piece in enumerate(pieces):
             new_piece = piece
             if i % 2 == 1:
-                # protect special characters
+                # protect special characters, only on odd-numbered pieces
+                # as they are the ones between ```java ...```
                 new_piece = new_piece.replace('|', r'\|')
                 new_piece = new_piece.replace('`', r'\`')
                 new_piece = new_piece.replace('*', r'\*')
@@ -309,8 +316,6 @@ def spoiler_code_snippet(content):
 
 
 if __name__ == '__main__':
-    tests_names_roles(verbose=False)
-
     with open("bot.token", 'r') as f:
         TOKEN = f.readline()
     bot.run(TOKEN)
