@@ -11,13 +11,13 @@ TODO
 
 ---
 
-## :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/notebooks.svg)](https://github.com/Naereen/notebooks/blob/master/LICENSE)
+## :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet.svg)](https://github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet/blob/master/LICENSE)
 This repository are published under the terms of the [MIT License](https://lbesson.mit-license.org/) (file [LICENSE.txt](LICENSE.txt)).
 © [Lilian Besson](https://GitHub.com/Naereen), 2020.
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/notebooks/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
-[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/notebooks/README.md?pixel)](https://GitHub.com/Naereen/notebooks/)
+[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet/README.md?pixel)](https://GitHub.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet/)
 
 [![ForTheBadge uses-badges](http://ForTheBadge.com/images/badges/uses-badges.svg)](http://ForTheBadge.com)
 [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
