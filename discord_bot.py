@@ -6,7 +6,7 @@ This bot aims at automatically adding /spoiler to any code snippet pasted in a D
 - Work in progress.
 - See https://github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet.git
 - Author: Lilian Besson (Naereen)
-- Date: 04/11/2020
+- Date: 24/11/2020
 - License: [MIT License](https://lbesson.mit-license.org/)
 """
 
@@ -59,16 +59,18 @@ def get_random_quote():
 import discord
 from discord.ext import commands
 
+
 bot = commands.Bot(
     status = discord.Status.online,
-    activity = discord.Game(name="Type !help for help"),
+    activity = discord.Game(name="Type !help for help. Work in progress!"),
     command_prefix = "!",
     description = """
 This bot aims at automatically adding /spoiler to any code snippet pasted in a Discord text channel in your Discord server.
 When I see a message containing code between \`\`\`...\`\`\`, I remove the formatting and show the code as spoiler ||spoiler||.
 
 Work in progress. See https://github.com/Naereen/Discord-bot-to-add-spoiler-to-any-code-snippet.git
-"""
+""",
+    # intents=discord.Intents.all(),
 )
 
 # Print info when connected
@@ -76,6 +78,11 @@ Work in progress. See https://github.com/Naereen/Discord-bot-to-add-spoiler-to-a
 async def on_ready():
     """ Function called when bot is ready (has logged in)."""
     print(f"This bot has logged in as '{bot.user}'")
+
+    print(f"bot.intents = {bot.intents}")
+    for attr in dir(bot.intents):
+        if not attr.startswith('_'):
+            print(f"    bot.intents.{attr} = {getattr(bot.intents, attr)}")
 
     # See https://realpython.com/how-to-make-a-discord-bot-python/
     for guild in bot.guilds:
@@ -86,6 +93,11 @@ async def on_ready():
         print(f"Guild Members:")
         for member in guild.members:
             print(f"- '{member.display_name}' (id: '{member.id}')")
+
+
+    print("\nNow printing the list of all members that the bot can see...")
+    for member in bot.get_all_members():
+        print(f"- '{member.display_name}' (id: '{member.id}')")
 
 
 # Welcome a new member
