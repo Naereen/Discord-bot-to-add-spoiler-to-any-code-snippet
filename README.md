@@ -7,7 +7,13 @@ See [this StackOverflow post](https://stackoverflow.com/questions/64645674/how-t
 > « When a code snippet is detected, automatically delete the user's post and repost it from the bot with spoiler enabled. Apply basic information such as who originally posted the message. » [Tin Nguyen's answer](https://stackoverflow.com/questions/64645674/how-to-automatically-mark-as-spoiler-a-snippet-of-code-in-discord?noredirect=1#comment114303076_64645674)
 
 ## Code
-TODO
+I tried to do that, but it appears that at of the time of writing (November 2020), it's just not possible to have both the `/spoiler` hidden effet and the code markup (syntax highlighthing), so I stopped trying.
+
+## What else is here?
+There is a tiny Discord bot with small features (undocumente, read the source code, it's easy to understand):
+- print a random Joke, using [@15Dkatz/official_joke_api](https://github.com/15Dkatz/official_joke_api),
+- :fr: [affiche une citation inspirée par les phrases pseudo-latines du Roi Loth de Kaamelott, générée aléatoirement par une grosse chaîne de Markov](https://nbviewer.jupyter.org/github/Naereen/notebooks/blob/master/Generer_des_fausses_citations_latines_du_Roi_Loth.ipynb),
+- and more!
 
 ---
 
